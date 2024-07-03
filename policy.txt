@@ -1,0 +1,34 @@
+Json policies for different aws account 
+
+for source account's bucket policy
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::DESTINATION_ACCOUNT_ID:root"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::SOURCE_BUCKET_NAME/*"
+        }
+    ]
+}
+
+
+for destination account's bucket policy
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::SOURCE_ACCOUNT_ID:root"
+            },
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::DESTINATION_BUCKET_NAME/*"
+        }
+    ]
+}
